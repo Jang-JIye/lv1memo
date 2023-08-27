@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -14,14 +16,14 @@ public class Memo {
     private String username;//작성자명
     private String contents;//작성 내용
     private String password;//비밀번호
-    private String date;//작성 날짜
+    private LocalDateTime date;//작성 날짜
 
     public Memo(MemoRequestDto requestDto) {
         this.title = requestDto.getTitle();
         this.username = requestDto.getUsername();
         this.contents = requestDto.getContents();
         this.password = requestDto.getPassword();
-        this.date = requestDto.getDate();
+        this.date = LocalDateTime.now();
     }
 
     public void update(MemoRequestDto requestDto) {
