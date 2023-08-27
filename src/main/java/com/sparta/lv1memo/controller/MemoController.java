@@ -3,13 +3,11 @@ package com.sparta.lv1memo.controller;
 import com.sparta.lv1memo.dto.MemoRequestDto;
 import com.sparta.lv1memo.dto.MemoResponseDto;
 import com.sparta.lv1memo.entity.Memo;
-import org.apache.catalina.core.JreMemoryLeakPreventionListener;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
@@ -35,7 +33,8 @@ public class MemoController {
     //readAll
     @GetMapping("/memos")
     public List<MemoResponseDto> getAllMemo() {
-        List<MemoResponseDto> responseList = memoList.values().stream().map(MemoResponseDto::new).toList();
+        List<MemoResponseDto> responseList = memoList.values().stream().map(MemoResponseDto::new)
+                .sorted(Comparator.comparing(MemoResponseDto::getDate).reversed()).collect(Collectors.toList());
 
         return responseList;
     }
@@ -72,7 +71,7 @@ public class MemoController {
     }
     //delete
     @DeleteMapping("/memos/{id}")
-    public Long deleteMemo(@PathVariable Long id, @RequestBody MemoRequestDto requestDto) {
+    public ResponseEntity<String> deleteMemo(@PathVariable Long id, @RequestBody MemoRequestDto requestDto) {
         //해당 메모가 DB에 존재하는지 확인
         if (memoList.containsKey(id)) {
             Memo memo = memoList.get(id);
@@ -80,7 +79,7 @@ public class MemoController {
             // 삭제 시 비밀번호 확인
             if (requestDto.getPassword().equals(memo.getPassword())) {
                 memoList.remove(id);
-                return id;
+                return ResponseEntity.ok("삭제 성공!");
             } else {
                 throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
             }
