@@ -27,6 +27,7 @@ public class Memo {
     }
 
     public void update(MemoRequestDto requestDto) {
+        this.title = requestDto.getTitle();
         this.username = requestDto.getUsername();
         this.contents = requestDto.getContents();
         this.password = requestDto.getPassword();
