@@ -2,10 +2,6 @@ package com.sparta.lv1memo.dto;
 
 import lombok.Getter;
 
-import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 @Getter
 public class MemoRequestDto {
 

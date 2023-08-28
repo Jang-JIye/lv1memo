@@ -3,8 +3,6 @@ package com.sparta.lv1memo.dto;
 import com.sparta.lv1memo.entity.Memo;
 import lombok.Getter;
 
-import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
