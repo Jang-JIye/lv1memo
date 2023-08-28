@@ -3,6 +3,8 @@ package com.sparta.lv1memo.dto;
 import com.sparta.lv1memo.entity.Memo;
 import lombok.Getter;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -21,5 +23,14 @@ public class MemoResponseDto {
         this.contents = memo.getContents();
         this.password = memo.getPassword();
         this.date = memo.getDate();
+    }
+
+    public MemoResponseDto(Long id, String title, String username, String contents, String password, LocalDateTime date) {
+        this.id = id;
+        this.title = title;
+        this.username = username;
+        this.contents = contents;
+        this.password = password;
+        this.date = date;
     }
 }
