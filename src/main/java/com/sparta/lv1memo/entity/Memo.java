@@ -30,12 +30,12 @@ public class Memo {
         this.date = LocalDateTime.now();
     }
 
-    public void update(MemoRequestDto requestDto) {
-        this.title = requestDto.getTitle();
-        this.username = requestDto.getUsername();
-        this.contents = requestDto.getContents();
-        this.password = requestDto.getPassword();
-    }
+//    public void update(MemoRequestDto requestDto) {
+//        this.title = requestDto.getTitle();
+//        this.username = requestDto.getUsername();
+//        this.contents = requestDto.getContents();
+//        this.password = requestDto.getPassword();
+//    }
 //
 //    public void setId(Long id) {
 //        this.id = id;
