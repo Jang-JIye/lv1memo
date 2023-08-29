@@ -83,10 +83,14 @@ public class MemoRepository {
         return jdbcTemplate.query(sql, resultSet -> {
             if (resultSet.next()) {
                 Memo memo = new Memo();
+                memo.setId(resultSet.getLong("id"));
                 memo.setTitle(resultSet.getString("title"));
                 memo.setUsername(resultSet.getString("username"));
                 memo.setContents(resultSet.getString("contents"));
                 memo.setPassword(resultSet.getString("password"));
+                Timestamp timestamp = resultSet.getTimestamp("date");
+                LocalDateTime date = timestamp.toLocalDateTime();
+                memo.setDate(date);
                 return memo;
             } else {
                 return null;
